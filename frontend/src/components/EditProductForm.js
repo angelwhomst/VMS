@@ -28,7 +28,7 @@ const EditProductForm = ({ product, category, onClose }) => {
       const fetchSize = async () => {
         try {
           const categoryParam = productData.category;
-          const url = `http://127.0.0.1:8001/products/products/sizes?productName=${encodeURIComponent(productData.productName)}&unitPrice=${productData.unitPrice}&productDescription=${encodeURIComponent(productData.productDescription)}&category=${encodeURIComponent(categoryParam)}`;
+          const url = `https://vms-production.up.railway.app/products/products/sizes?productName=${encodeURIComponent(productData.productName)}&unitPrice=${productData.unitPrice}&productDescription=${encodeURIComponent(productData.productDescription)}&category=${encodeURIComponent(categoryParam)}`;
 
           console.log(`[Fetch Sizes] URL: ${url}`);
 
@@ -73,7 +73,7 @@ const EditProductForm = ({ product, category, onClose }) => {
       const fetchSizeVariants = async () => {
         try {
           const categoryParam = productData.category;
-          const url = `http://127.0.0.1:8001/products/products/size_variants?productName=${encodeURIComponent(productData.productName)}&unitPrice=${productData.unitPrice}&productDescription=${encodeURIComponent(productData.productDescription || '')}&category=${encodeURIComponent(categoryParam)}`;
+          const url = `https://vms-production.up.railway.app/products/products/size_variants?productName=${encodeURIComponent(productData.productName)}&unitPrice=${productData.unitPrice}&productDescription=${encodeURIComponent(productData.productDescription || '')}&category=${encodeURIComponent(categoryParam)}`;
 
           console.log(`[Fetch Size Variants] URL: ${url}`);
 
@@ -129,7 +129,7 @@ const EditProductForm = ({ product, category, onClose }) => {
   
     try {
       const response = await fetch(
-        `http://127.0.0.1:8001/products/products/sizes/soft-delete?productName=${encodeURIComponent(productData.productName)}&unitPrice=${encodeURIComponent(productData.unitPrice)}&category=${encodeURIComponent(productData.category)}&size=${encodeURIComponent(sizeToDelete.size)}`,
+        `https://vms-production.up.railway.app/products/products/sizes/soft-delete?productName=${encodeURIComponent(productData.productName)}&unitPrice=${encodeURIComponent(productData.unitPrice)}&category=${encodeURIComponent(productData.category)}&size=${encodeURIComponent(sizeToDelete.size)}`,
         {
           method: 'PATCH',
           headers: {

@@ -5,7 +5,7 @@ import { FaBox, FaShoppingCart, FaShippingFast, FaTruck, FaBan, FaCheckCircle, F
 // Utility function to send status updates to the backend
 const sendOrderStatusUpdate = async (orderID, status) => {
   try {
-    const response = await fetch(`http://localhost:8001/orders/vms/orders/${orderID}/confirm`, {
+    const response = await fetch(`https://vms-production.up.railway.app/orders/vms/orders/${orderID}/confirm`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -26,7 +26,7 @@ const sendOrderStatusUpdate = async (orderID, status) => {
 
 const sendOrderToShipped = async (orderID, setShippedOrders, setToShipOrders, toShipOrders) => {
   try {
-    const response = await fetch(`http://localhost:8001/orders/vms/orders/${orderID}/toship`, {
+    const response = await fetch(`https://vms-production.up.railway.app/orders/vms/orders/${orderID}/toship`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -54,7 +54,7 @@ const sendOrderToShipped = async (orderID, setShippedOrders, setToShipOrders, to
 // Add a function to move an order to 'Delivered'
 const sendOrderToDelivered = async (orderID, setDeliveredOrders, setShippedOrders, shippedOrders) => {
   try {
-    const response = await fetch(`http://localhost:8001/orders/vms/orders/${orderID}/Delivered`, {
+    const response = await fetch(`https://vms-production.up.railway.app/orders/vms/orders/${orderID}/Delivered`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -83,7 +83,7 @@ const sendOrderToDelivered = async (orderID, setDeliveredOrders, setShippedOrder
 // Add a function to move an order to 'Complete'
 const sendOrderToComplete = async (orderID, setCompletedOrders, setDeliveredOrders, deliveredOrders) => {
   try {
-    const response = await fetch(`http://localhost:8001/orders/vms/orders/${orderID}/complete`, {
+    const response = await fetch(`https://vms-production.up.railway.app/orders/vms/orders/${orderID}/complete`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -121,7 +121,7 @@ const Orders = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await fetch("http://localhost:8001/vms/order-details/orders");
+        const response = await fetch("https://vms-production.up.railway.app/vms/order-details/orders");
         if (!response.ok) throw new Error("Failed to fetch orders");
         const data = await response.json();
   
@@ -137,7 +137,7 @@ const Orders = () => {
           customerName: item.customerName,
           address: item.warehouseAddress,
           total: `₱${item.totalPrice.toFixed(2)}`, // Format price
-          image: item.image_path ? `http://localhost:8001/${item.image_path.replace("\\", "/")}` : "http://127.0.0.1:8001", // Make sure it’s a valid URL
+          image: item.image_path ? `https://vms-production.up.railway.app/${item.image_path.replace("\\", "/")}` : "https://vms-production.up.railway.app", // Make sure it’s a valid URL
         }));
         setPendingOrders(formattedData);
       } catch (error) {
@@ -152,7 +152,7 @@ const Orders = () => {
   useEffect(() => {
     const fetchConfirmedOrders = async () => {
       try {
-        const response = await fetch("http://localhost:8001/orders/confirmed/orders");
+        const response = await fetch("https://vms-production.up.railway.app/orders/confirmed/orders");
         if (!response.ok) throw new Error("Failed to fetch 'To Ship' orders");
         const data = await response.json();
 
@@ -165,7 +165,7 @@ const Orders = () => {
           total: `$${item.totalPrice.toFixed(2)}`, // Format price
           customerName: item.customerName,
           address: item.warehouseAddress,
-          image: item.image_path ? `http://localhost:8001/${item.image_path.replace("\\", "/")}` : "http://127.0.0.1:8001", // Make sure it’s a valid URL
+          image: item.image_path ? `https://vms-production.up.railway.app/${item.image_path.replace("\\", "/")}` : "https://vms-production.up.railway.app", // Make sure it’s a valid URL
         }));
 
         setToShipOrders(formattedToShipOrders);
@@ -179,7 +179,7 @@ const Orders = () => {
   useEffect(() => {
     const fetchShippedOrders = async () => {
       try {
-        const response = await fetch("http://localhost:8001/orders/toship/orders");
+        const response = await fetch("https://vms-production.up.railway.app/orders/toship/orders");
         if (!response.ok) throw new Error("Failed to fetch 'Shipped' orders");
         const data = await response.json();
   
@@ -192,7 +192,7 @@ const Orders = () => {
           total: `$${item.totalPrice.toFixed(2)}`, // Format price
           customerName: item.customerName,
           address: item.warehouseAddress,
-          image: item.image_path ? `http://localhost:8001/${item.image_path.replace("\\", "/")}` : "http://127.0.0.1:8001", // Make sure it’s a valid URL
+          image: item.image_path ? `https://vms-production.up.railway.app/${item.image_path.replace("\\", "/")}` : "https://vms-production.up.railway.app", // Make sure it’s a valid URL
         }));
   
         setShippedOrders(formattedShippedOrders);
@@ -206,7 +206,7 @@ const Orders = () => {
   useEffect(() => {
     const fetchdeliveredOrders = async () => {
       try {
-        const response = await fetch("http://localhost:8001/orders/vms/orders/delivered");
+        const response = await fetch("https://vms-production.up.railway.app/orders/vms/orders/delivered");
         if (!response.ok) throw new Error("Failed to fetch 'Delivered' orders");
         const data = await response.json();
   
@@ -219,7 +219,7 @@ const Orders = () => {
           total: `$${item.totalPrice.toFixed(2)}`, // Format price
           customerName: item.customerName,
           address: item.warehouseAddress,
-          image: item.image_path ? `http://localhost:8001/${item.image_path.replace("\\", "/")}` : "http://127.0.0.1:8001", // Make sure it’s a valid URL
+          image: item.image_path ? `https://vms-production.up.railway.app/${item.image_path.replace("\\", "/")}` : "https://vms-production.up.railway.app", // Make sure it’s a valid URL
         }));
   
         setDeliveredOrders(formattedDeliveredOrders);
@@ -233,7 +233,7 @@ const Orders = () => {
   useEffect(() => {
     const CompletedOrders = async () => {
       try {
-        const response = await fetch("http://localhost:8001/orders/vms/orders/Completed");
+        const response = await fetch("https://vms-production.up.railway.app/orders/vms/orders/Completed");
         if (!response.ok) throw new Error("Failed to fetch 'Completed' orders");
         const data = await response.json();
   
@@ -246,7 +246,7 @@ const Orders = () => {
           total: `$${item.totalPrice.toFixed(2)}`, 
           customerName: item.customerName,
           address: item.warehouseAddress,
-          image: item.image_path ? `http://localhost:8001/${item.image_path.replace("\\", "/")}` : "http://127.0.0.1:8001", // Make sure it’s a valid URL
+          image: item.image_path ? `https://vms-production.up.railway.app/${item.image_path.replace("\\", "/")}` : "https://vms-production.up.railway.app", // Make sure it’s a valid URL
         }));
   
         setCompletedOrders(formattedcompletedOrders);

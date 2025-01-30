@@ -61,7 +61,7 @@ const EditDescription = ({ onClose, productData }) => {
         image: formData.image_path, // Base64 string
       };
 
-      const apiUrl = productData ? `http://127.0.0.1:8001/products/products/${productData.id}` : "http://127.0.0.1:8001/products/products";
+      const apiUrl = productData ? `https://vms-production.up.railway.app/products/products/${productData.id}` : "https://vms-production.up.railway.app/products/products";
 
       // Send POST request to the API (UPDATE for editing or POST for new)
       const response = await axios({

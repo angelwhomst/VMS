@@ -74,7 +74,7 @@ const AddProductsForm = ({ onClose }) => {
   
       // Send POST request to the API
       const response = await axios.post(
-        "http://127.0.0.1:8001/products/products",
+        "https://vms-production.up.railway.app/products/products",
         payload,
         {
           headers: {

@@ -9,7 +9,7 @@ function LoginPage() {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch("http://127.0.0.1:8001/auth/token", {
+      const response = await fetch("https://vms-production.up.railway.app/auth/token", {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",

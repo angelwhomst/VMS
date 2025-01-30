@@ -21,7 +21,7 @@ const AddSizeModal = ({ productName, productDescription, unitPrice, category, im
     console.log("image_path:", imagePath);
 
     axios
-      .get("/ims/products_details", { params: { productName } })
+      .get("https://vms-production.up.railway.app/ims/products_details", { params: { productName } })
       .then((response) => {
         console.log("Fetched product details:", response.data);
       })
@@ -73,7 +73,7 @@ const AddSizeModal = ({ productName, productDescription, unitPrice, category, im
 
       console.log("Payload to send:", payload);
 
-      const response = await axios.post("http://127.0.0.1:8001/products/products_AddSize", payload);
+      const response = await axios.post("https://vms-production.up.railway.app/products/products_AddSize", payload);
       console.log("Server response:", response.data.message);
 
       onSave(formData);

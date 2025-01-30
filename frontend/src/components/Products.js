@@ -25,7 +25,7 @@ const Products = () => {
   const fetchWomenProducts = async () => {
     try {
       const response = await axios.get(
-        "http://127.0.0.1:8001/products/products/Womens-Leather-Shoes"
+        "https://vms-production.up.railway.app/products/products/Womens-Leather-Shoes"
       );
       console.log("Fetched women's products response:", response.data);
 
@@ -36,7 +36,7 @@ const Products = () => {
           const imageURL = product.image_path;
           return {
             ...product,
-            imageURL: `http://127.0.0.1:8001/${imageURL}`,
+            imageURL: `https://vms-production.up.railway.app/${imageURL}`,
           };
         }),
       }));
@@ -53,7 +53,7 @@ const Products = () => {
   const fetchmenProducts = async () => {
     try {
       const response = await axios.get(
-        "http://127.0.0.1:8001/products/products/mens-Leather-Shoes"
+        "https://vms-production.up.railway.app/products/products/mens-Leather-Shoes"
       );
       console.log("Fetched men's products response:", response.data);
       const menProducts = response.data || [];
@@ -63,7 +63,7 @@ const Products = () => {
           const imageURL = product.image_path;
           return {
             ...product,
-            imageURL: `http://127.0.0.1:8001/${imageURL}`,
+            imageURL: `https://vms-production.up.railway.app/${imageURL}`,
           };
         }),
       }));
@@ -78,7 +78,7 @@ const Products = () => {
   const fetchgirlsProducts = async () => {
     try {
       const response = await axios.get(
-        "http://127.0.0.1:8001/products/products/girls-Leather-Shoes"
+        "https://vms-production.up.railway.app/products/products/girls-Leather-Shoes"
       );
       console.log("Fetched girls's products response:", response.data);
       const girlsProducts = response.data || [];
@@ -88,7 +88,7 @@ const Products = () => {
           const imageURL = product.image_path;
           return {
             ...product,
-            imageURL: `http://127.0.0.1:8001/${imageURL}`,
+            imageURL: `https://vms-production.up.railway.app/${imageURL}`,
           };
         }),
       }));
@@ -103,7 +103,7 @@ const Products = () => {
   const fetchboysProducts = async () => {
     try {
       const response = await axios.get(
-        "http://127.0.0.1:8001/products/products/boys-Leather-Shoes"
+        "https://vms-production.up.railway.app/products/products/boys-Leather-Shoes"
       );
       console.log("Fetched boy's products response:", response.data);
       const boysProducts = response.data || [];
@@ -113,7 +113,7 @@ const Products = () => {
           const imageURL = product.image_path;
           return {
             ...product,
-            imageURL: `http://127.0.0.1:8001/${imageURL}`,
+            imageURL: `https://vms-production.up.railway.app/${imageURL}`,
           };
         }),
       }));
@@ -171,7 +171,7 @@ const Products = () => {
     // Ensure the new product has a valid image URL
     const productWithImage = {
       ...newProduct,
-      imageURL: newProduct.image_path || "http://127.0.0.1:8001/placeholder.png",
+      imageURL: newProduct.image_path || "https://vms-production.up.railway.app/placeholder.png",
     };
 
     // Filter only required fields

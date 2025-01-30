@@ -12,7 +12,7 @@ function App() {
 
   // Fetching data from the server on component mount
   useEffect(() => {
-    fetch("http://localhost:8001/api/data") 
+    fetch("https://vms-production.up.railway.app/api/data") 
       .then((response) => response.json())
       .then((data) => setData(data))
       .catch((error) => console.error("Error fetching data:", error));

@@ -39,7 +39,7 @@ const EditSizeModal = ({ selectedSize, productName, productDescription, unitPric
       };
 
       // Send a PUT request to the backend API
-      const response = await axios.put("/ims/products/update", payload);
+      const response = await axios.put("https://vms-production.up.railway.app/ims/products/update", payload);
 
       // Handle successful update
       console.log(response.data.message);
