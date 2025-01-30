@@ -9,6 +9,9 @@ from fastapi.staticfiles import StaticFiles
 from dotenv import load_dotenv
 import os
 import uvicorn
+import requests
+import httpx
+
 
 # Load environment variables
 load_dotenv()
@@ -58,6 +61,50 @@ app.include_router(orders_router, prefix='/orders', tags=["Orders"])
 @app.get("/api/data")
 async def get_data():
     return {"data": "Sample data from FastAPI backend!"}
+
+async def get_current_ip():
+    try:
+        async with httpx.AsyncClient() as client:
+            response = await client.get('https://api.ipify.org?format=json')
+            ip_data = response.json()
+            return ip_data.get('ip')
+    except httpx.RequestError as e:
+        print(f"Error fetching IP: {e}")
+        return None
+
+async def update_firewall_rule(current_ip):
+    webhook_url = 'https://0d152165-a384-45db-be15-cdf5ef189153.webhook.sea.azure-automation.net/webhooks?token=3FPOjJT%2fNNxCqB6j449UN4mbJoJwP7xQz26798CZfWs%3d'
+    data = {
+        'sqlServerName': 'ims-vms.database.windows.net',
+        'resourceGroupName': 'YourResourceGroup',
+        'ipAddress': current_ip
+    }
+    try:
+        async with httpx.AsyncClient() as client:
+            response = await client.post(webhook_url, json=data)
+            if response.status_code == 200:
+                print("Firewall rule updated successfully")
+            else:
+                print(f"Failed to update firewall rule: {response.status_code}")
+    except httpx.RequestError as e:
+        print(f"Error while sending request to webhook: {e}")
+
+@app.on_event("startup")
+async def on_startup():
+    current_ip = await get_current_ip()
+    if current_ip:
+        await update_firewall_rule(current_ip)
+    else:
+        print("Could not retrieve current IP address.")
+
+@app.post("/update-firewall-rule")
+async def trigger_update():
+    current_ip = await get_current_ip()
+    if current_ip:
+        await update_firewall_rule(current_ip)
+        return {"status": "Firewall rule update triggered"}
+    else:
+        return {"status": "Failed to retrieve current IP"}
 
 # Run the FastAPI application
 if __name__ == "__main__":
