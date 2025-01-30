@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, BackgroundTasks
 from fastapi.middleware.cors import CORSMiddleware
 from routers.auth import router as auth_router
 from routers.vendor import router as vendor_router
@@ -11,6 +11,7 @@ import os
 import uvicorn
 import requests
 import httpx
+import asyncio
 
 
 # Load environment variables
@@ -31,7 +32,8 @@ origins = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "http://localhost:3001",
-    "http://127.0.0.1:3001"
+    "http://127.0.0.1:3001",
+    "https://vendor-management-system-z7oi.onrender.com/"
 ]
 
 app.add_middleware(
@@ -83,28 +85,30 @@ async def update_firewall_rule(current_ip):
         async with httpx.AsyncClient() as client:
             response = await client.post(webhook_url, json=data)
             if response.status_code == 200:
-                print("Firewall rule updated successfully")
+                print("✅ Firewall rule update requested successfully.")
             else:
-                print(f"Failed to update firewall rule: {response.status_code}")
+                print(f"⚠️ Failed to update firewall rule: {response.status_code}")
     except httpx.RequestError as e:
-        print(f"Error while sending request to webhook: {e}")
+        print(f"❌ Error while sending request to webhook: {e}")
 
 @app.on_event("startup")
 async def on_startup():
     current_ip = await get_current_ip()
     if current_ip:
-        await update_firewall_rule(current_ip)
+        loop = asyncio.get_event_loop()
+        loop.create_task(update_firewall_rule(current_ip))  # run in background
     else:
-        print("Could not retrieve current IP address.")
+        print("❌ Could not retrieve current IP address.")
 
 @app.post("/update-firewall-rule")
 async def trigger_update():
     current_ip = await get_current_ip()
     if current_ip:
         await update_firewall_rule(current_ip)
-        return {"status": "Firewall rule update triggered"}
+        return {"status": "✅ Firewall rule update triggered."}
     else:
-        return {"status": "Failed to retrieve current IP"}
+        return {"status": "❌ Failed to retrieve current IP"}
+
 
 # Run the FastAPI application
 if __name__ == "__main__":
