@@ -33,7 +33,8 @@ origins = [
     "http://127.0.0.1:3000",
     "http://localhost:3001",
     "http://127.0.0.1:3001",
-    "https://vendor-management-system-z7oi.onrender.com/"
+    "https://vendor-management-system-z7oi.onrender.com",
+    "https://vendor-management-system-z7oi.onrender.com"
 ]
 
 app.add_middleware(
