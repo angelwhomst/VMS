@@ -73,7 +73,7 @@ async def get_current_ip():
         return None
 
 async def update_firewall_rule(current_ip):
-    webhook_url = 'https://0d152165-a384-45db-be15-cdf5ef189153.webhook.sea.azure-automation.net/webhooks?token=3FPOjJT%2fNNxCqB6j449UN4mbJoJwP7xQz26798CZfWs%3d'
+    webhook_url = 'https://0d152165-a384-45db-be15-cdf5ef189153.webhook.sea.azure-automation.net/webhooks?token=ryufougkn8Iw6xNFKWFC%2fAKFnauE3Qifjv8Tlkynrhs%3d'
     data = {
         'sqlServerName': 'ims-vms.database.windows.net',
         'resourceGroupName': 'YourResourceGroup',
