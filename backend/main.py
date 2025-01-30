@@ -64,6 +64,11 @@ app.include_router(orders_router, prefix='/orders', tags=["Orders"])
 async def get_data():
     return {"data": "Sample data from FastAPI backend!"}
 
+# healthcheck endpoint for Railway
+@app.get("/health")
+async def health_check():
+    return {"status": "ok"}
+
 async def get_current_ip():
     try:
         async with httpx.AsyncClient() as client:
