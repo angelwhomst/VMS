@@ -1,0 +1,151 @@
+/* Unique Dashboard Styles */
+body {
+  margin: 0;
+  font-family: "Poppins", Arial, sans-serif;
+  background-color: #f4f6f8; /* Light gray background */
+  color: #333; /* Default text color for readability */
+}
+
+/* Main Dashboard Layout */
+.dashboard-main {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  margin-top: 1cm; /* Move everything down by 1cm */
+}
+
+/* Dashboard Header */
+.dashboard-header {
+  background-color: transparent; /* Removed background color */
+  color: #ff8c00; /* Orange text color */
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border-bottom: none; /* Removed border if there is one */
+  box-shadow: none; /* Removed shadow */
+}
+
+/* Dashboard Summary Section */
+.dashboard-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Dashboard Cards */
+.dashboard-card {
+  background-color: #ffffff; /* White background for the cards */
+  border-radius: 12px;
+  padding: 2rem; /* Slightly increased padding for thicker cards */
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1); /* Increased shadow for more emphasis */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-align: center;
+  height: 220px; /* Slightly increased card height */
+  display: flex; /* Flexbox layout for centering */
+  flex-direction: column; /* Stack items vertically */
+  justify-content: center; /* Vertically center content */
+  align-items: center; /* Horizontally center content */
+}
+
+.dashboard-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); /* Enhanced hover effect */
+}
+
+.dashboard-card h2 {
+  margin-bottom: 1rem; /* Added margin for spacing between text and numbers */
+  font-size: 1.5rem; /* Slightly smaller font size for card headings */
+  font-weight: 600;
+  color: #ff8c00; /* Orange text color for card headings */
+}
+
+.dashboard-card p {
+  font-size: 3.5rem; /* Larger font size for card numbers */
+  font-weight: 700;
+  color: #333; /* Dark text for readability */
+  margin-top: 0.5rem; /* Added margin to separate the numbers from the heading */
+}
+
+/* Recent Activities Section */
+.dashboard-recent-activities {
+  background-color: #ffffff; /* White background for the section */
+  border-radius: 12px; /* Smooth rounded edges */
+  padding: 2rem; /* Ample padding for better spacing */
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  max-height: 280px; /* Restrict height to create a scrollable section */
+  overflow-y: auto; /* Enable vertical scrolling for overflow content */
+  scrollbar-width: thin; /* For modern browsers: thinner scrollbars */
+  scrollbar-color: #ccc #f9f9f9; /* Custom scrollbar color */
+}
+
+/* Scrollbar customization for WebKit browsers */
+.dashboard-recent-activities::-webkit-scrollbar {
+  width: 6px; /* Narrow scrollbar width */
+}
+
+.dashboard-recent-activities::-webkit-scrollbar-track {
+  background: #f9f9f9; /* Light background for the scrollbar track */
+  border-radius: 12px;
+}
+
+.dashboard-recent-activities::-webkit-scrollbar-thumb {
+  background-color: #ccc; /* Gray scrollbar thumb */
+  border-radius: 12px;
+}
+
+/* Recent Activities List */
+.dashboard-recent-activities ul {
+  list-style-type: none; /* Remove default bullet points */
+  padding: 0; /* Reset padding */
+  margin: 0; /* Reset margin */
+  display: flex; /* Flexbox layout */
+  flex-direction: column; /* Stack items vertically */
+  gap: 1rem; /* Space between activity items */
+}
+
+/* List Items */
+.dashboard-recent-activities li {
+  padding: 1rem; /* Uniform padding inside list items */
+  border-bottom: 1px solid #eee; /* Subtle border for separation */
+  display: flex; /* Flexbox layout for aligning icon and content */
+  flex-direction: row; /* Ensures icon and text align horizontally */
+  align-items: center; /* Center-align icon and content */
+  gap: 1rem; /* Space between icon and text */
+}
+
+.dashboard-recent-activities li:last-child {
+  border-bottom: none; /* Remove border from the last item */
+}
+
+.dashboard-recent-activities li:hover {
+  background-color: #f9f9f9; /* Light gray background on hover */
+}
+
+
+/* Activity Icon */
+.activity-icon {
+  font-size: 1.5rem; /* Larger size for icons */
+  color: #ff8c00; /* Orange icon color */
+  margin-top: 0.2rem; /* Adjust spacing relative to text */
+}
+
+/* Activity Details */
+.activity-details {
+  display: flex; /* Use flexbox for vertical stacking */
+  flex-direction: column; /* Stack items vertically */
+}
+
+.activity-details p {
+  margin: 0; /* Remove default paragraph margin */
+  font-size: 1rem; /* Standard font size for text */
+  color: #333; /* Darker text color for better readability */
+}
+
+.activity-details .activity-time {
+  font-size: 0.85rem; /* Smaller font size for timestamps */
+  color: #888; /* Light gray text for timestamps */
+  margin-top: 0.2rem; /* Space between activity text and timestamp */
+}

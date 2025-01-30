@@ -1,0 +1,193 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  overflow: hidden; /* Prevents horizontal scroll */
+}
+
+.modal-content {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 800px;
+  max-height: 90%; /* Limits the modal's height */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow-y: auto; /* Enables vertical scrolling */
+  overflow-x: hidden; /* Prevents horizontal scrolling */
+  font-family: 'Arial', sans-serif;
+  box-sizing: border-box;
+
+  display: flex;            /* Flex container to handle the child elements */
+  flex-direction: column;   /* Ensures everything is stacked vertically */
+  justify-content: flex-start; /* Align items at the top */
+  gap: 20px;                /* Adds space between items */
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 50px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #FF6F00;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+  color: #D85D00;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #FF6F00;
+  font-size: 24px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  display: flex;         /* Flex container for form groups */
+  flex-direction: column; /* Stack label and input vertically */
+}
+
+label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8px;
+  color: #333;
+  font-size: 16px;
+}
+
+input[type="text"],
+textarea,
+select {
+  width: 100%; /* Ensure inputs take up the full width */
+  padding: 14px;
+  border: 1px solid #FF6F00;
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-size: 16px;
+  color: #333;
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+textarea:focus,
+select:focus {
+  border-color: #FF4500;
+  outline: none;
+}
+
+textarea {
+  height: 120px;
+  resize: vertical;
+}
+
+button.submit-btn {
+  width: 100%; /* Ensure the button is full width */
+  padding: 14px;
+  background-color: #FF6F00;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+}
+
+button.submit-btn:hover {
+  background-color: #D85D00;
+}
+
+.image-upload {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  border: 2px dashed #FF6F00;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  background-color: #f8f8f8;
+  transition: background-color 0.3s ease;
+}
+
+.image-upload:hover {
+  background-color: #FFEDD5;
+}
+
+.image-upload input[type="file"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.image-placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+
+.image-placeholder img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain; /* Ensures the image fits within the container without overflowing */
+}
+
+.image-placeholder p {
+  color: #FF6F00;
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.addproduct-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Dimmed background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure the modal is on top */
+}
+
+.addproduct-modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  max-width: 400px;
+  width: 100%;
+  z-index: 1001; /* Make sure the content is above the overlay */
+}
+
+.modal-overlay {
+  z-index: 999; /* Keep form modal under error modal */
+}
