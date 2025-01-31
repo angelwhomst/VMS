@@ -195,7 +195,7 @@ async def confirm_order(orderID: int, order_status_update: OrderStatusUpdate):
                 raise HTTPException(status_code=400, detail=f"not enough available variants for productID {product_id}. Required: {order_quantity}, Available: {len(variants)}")
         
         # prepare the payload for IMS if the status is "Confirmed"
-        ims_api_url = "http://127.0.0.1:8000/receive-orders/ims/orders/confirm"
+        ims_api_url = "https://ims-wc58.onrender.com/receive-orders/ims/orders/confirm"
         ims_payload = {"orderID": orderID, "orderStatus": status}
 
         # send the confirmation or rejection to IMS and wait for a response
@@ -312,7 +312,7 @@ async def mark_to_ship(orderID: int):
         await conn.commit()
 
         # after updatimg VMS, also update IMS with the 'To Ship' status
-        ims_url = 'http://127.0.0.1:8000/receive-orders/ims/orders/ToShip'  
+        ims_url = 'https://ims-wc58.onrender.com/receive-orders/ims/orders/ToShip'  
 
         ims_payload = {
             "orderID": orderID,
@@ -521,7 +521,7 @@ async def delivered_order(orderID: int):
         )
 
         # Send the prepared variants to IMS
-        ims_api_url = 'http://127.0.0.1:8000/receive-orders/ims/variants/receive'
+        ims_api_url = 'https://ims-wc58.onrender.com/receive-orders/ims/variants/receive'
         payload = {
             'orderID': orderID,
             'orderStatus': 'Delivered',
